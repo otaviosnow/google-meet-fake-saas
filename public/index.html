@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Meet Fake - SaaS</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <img src="images/meet-logo.png" alt="Google Meet Fake" width="120">
+                    <span>Fake</span>
+                </div>
+                <nav class="nav">
+                    <button id="loginBtn" class="btn btn-outline">Entrar</button>
+                    <button id="registerBtn" class="btn btn-primary">Registrar</button>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Crie chamadas fake do Google Meet</h1>
+                <p>Faça upload dos seus vídeos e gere links que simulam reuniões do Google Meet. Perfeito para VSLs e apresentações.</p>
+                <div class="hero-buttons">
+                    <button id="heroRegisterBtn" class="btn btn-primary btn-large">Começar Agora</button>
+                    <button id="heroDemoBtn" class="btn btn-outline btn-large">Ver Demo</button>
+                </div>
+            </div>
+            <div class="hero-image">
+                <img src="images/hero-screenshot.png" alt="Screenshot da aplicação">
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="container">
+            <h2>Recursos Principais</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-upload"></i>
+                    </div>
+                    <h3>Upload de Vídeos</h3>
+                    <p>Faça upload dos seus vídeos MP4 ou use links do Google Drive</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-link"></i>
+                    </div>
+                    <h3>Links Únicos</h3>
+                    <p>Gere links únicos para cada chamada fake</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-play"></i>
+                    </div>
+                    <h3>Reprodução Automática</h3>
+                    <p>Vídeo inicia automaticamente quando alguém entra na chamada</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3>Responsivo</h3>
+                    <p>Funciona perfeitamente em desktop e mobile</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Auth Modals -->
+    <div id="authModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modalTitle">Entrar</h2>
+                <button class="modal-close" id="closeModal">&times;</button>
+            </div>
+            
+            <!-- Login Form -->
+            <form id="loginForm" class="auth-form">
+                <div class="form-group">
+                    <label for="loginEmail">Email</label>
+                    <input type="email" id="loginEmail" required>
+                </div>
+                <div class="form-group">
+                    <label for="loginPassword">Senha</label>
+                    <input type="password" id="loginPassword" required>
+                </div>
+                <button type="submit" class="btn btn-primary btn-full">Entrar</button>
+                <p class="form-footer">
+                    Não tem conta? <a href="#" id="showRegister">Registrar</a>
+                </p>
+            </form>
+
+            <!-- Register Form -->
+            <form id="registerForm" class="auth-form" style="display: none;">
+                <div class="form-group">
+                    <label for="registerName">Nome</label>
+                    <input type="text" id="registerName" required>
+                </div>
+                <div class="form-group">
+                    <label for="registerEmail">Email</label>
+                    <input type="email" id="registerEmail" required>
+                </div>
+                <div class="form-group">
+                    <label for="registerPassword">Senha</label>
+                    <input type="password" id="registerPassword" required>
+                    <small>A senha deve ter pelo menos 6 caracteres, uma letra maiúscula, uma minúscula e um número</small>
+                </div>
+                <button type="submit" class="btn btn-primary btn-full">Registrar</button>
+                <p class="form-footer">
+                    Já tem conta? <a href="#" id="showLogin">Entrar</a>
+                </p>
+            </form>
+        </div>
+    </div>
+
+    <!-- Dashboard (hidden by default) -->
+    <div id="dashboard" class="dashboard" style="display: none;">
+        <header class="dashboard-header">
+            <div class="container">
+                <div class="dashboard-nav">
+                    <div class="logo">
+                        <img src="images/meet-logo.png" alt="Google Meet Fake" width="100">
+                        <span>Fake</span>
+                    </div>
+                    <nav class="dashboard-menu">
+                        <button class="menu-item active" data-tab="videos">
+                            <i class="fas fa-video"></i>
+                            Meus Vídeos
+                        </button>
+                        <button class="menu-item" data-tab="meetings">
+                            <i class="fas fa-users"></i>
+                            Minhas Reuniões
+                        </button>
+                        <button class="menu-item" data-tab="profile">
+                            <i class="fas fa-user"></i>
+                            Perfil
+                        </button>
+                    </nav>
+                    <div class="user-menu">
+                        <span id="userName">Usuário</span>
+                        <button id="logoutBtn" class="btn btn-outline btn-small">Sair</button>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <main class="dashboard-content">
+            <div class="container">
+                <!-- Videos Tab -->
+                <div id="videosTab" class="tab-content active">
+                    <div class="tab-header">
+                        <h2>Meus Vídeos</h2>
+                        <button id="addVideoBtn" class="btn btn-primary">
+                            <i class="fas fa-plus"></i>
+                            Adicionar Vídeo
+                        </button>
+                    </div>
+                    
+                    <div id="videosList" class="videos-grid">
+                        <!-- Videos will be loaded here -->
+                    </div>
+                </div>
+
+                <!-- Meetings Tab -->
+                <div id="meetingsTab" class="tab-content">
+                    <div class="tab-header">
+                        <h2>Minhas Reuniões</h2>
+                        <button id="createMeetingBtn" class="btn btn-primary">
+                            <i class="fas fa-plus"></i>
+                            Criar Reunião
+                        </button>
+                    </div>
+                    
+                    <div id="meetingsList" class="meetings-grid">
+                        <!-- Meetings will be loaded here -->
+                    </div>
+                </div>
+
+                <!-- Profile Tab -->
+                <div id="profileTab" class="tab-content">
+                    <div class="tab-header">
+                        <h2>Meu Perfil</h2>
+                    </div>
+                    
+                    <div class="profile-content">
+                        <div class="profile-stats">
+                            <div class="stat-card">
+                                <h3>Vídeos</h3>
+                                <p id="totalVideos">0</p>
+                            </div>
+                            <div class="stat-card">
+                                <h3>Reuniões</h3>
+                                <p id="totalMeetings">0</p>
+                            </div>
+                            <div class="stat-card">
+                                <h3>Visualizações</h3>
+                                <p id="totalViews">0</p>
+                            </div>
+                        </div>
+                        
+                        <form id="profileForm" class="profile-form">
+                            <div class="form-group">
+                                <label for="profileName">Nome</label>
+                                <input type="text" id="profileName" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="profileEmail">Email</label>
+                                <input type="email" id="profileEmail" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Atualizar Perfil</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Add Video Modal -->
+    <div id="addVideoModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Adicionar Vídeo</h2>
+                <button class="modal-close" id="closeVideoModal">&times;</button>
+            </div>
+            
+            <form id="addVideoForm" class="video-form">
+                <div class="form-group">
+                    <label for="videoTitle">Título</label>
+                    <input type="text" id="videoTitle" required>
+                </div>
+                <div class="form-group">
+                    <label for="videoDescription">Descrição</label>
+                    <textarea id="videoDescription" rows="3"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="videoType">Tipo</label>
+                    <select id="videoType" required>
+                        <option value="upload">Upload do Computador</option>
+                        <option value="drive">Google Drive</option>
+                        <option value="url">URL Externa</option>
+                    </select>
+                </div>
+                <div class="form-group" id="uploadGroup">
+                    <label for="videoFile">Arquivo de Vídeo</label>
+                    <input type="file" id="videoFile" accept="video/*">
+                </div>
+                <div class="form-group" id="urlGroup" style="display: none;">
+                    <label for="videoUrl">URL do Vídeo</label>
+                    <input type="url" id="videoUrl" placeholder="https://exemplo.com/video.mp4">
+                </div>
+                <button type="submit" class="btn btn-primary btn-full">Adicionar Vídeo</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Create Meeting Modal -->
+    <div id="createMeetingModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Criar Reunião</h2>
+                <button class="modal-close" id="closeMeetingModal">&times;</button>
+            </div>
+            
+            <form id="createMeetingForm" class="meeting-form">
+                <div class="form-group">
+                    <label for="meetingTitle">Título da Reunião</label>
+                    <input type="text" id="meetingTitle" required>
+                </div>
+                <div class="form-group">
+                    <label for="meetingDescription">Descrição</label>
+                    <textarea id="meetingDescription" rows="3"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="meetingVideo">Vídeo</label>
+                    <select id="meetingVideo" required>
+                        <option value="">Selecione um vídeo</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="meetingMaxParticipants">Máximo de Participantes</label>
+                    <input type="number" id="meetingMaxParticipants" min="1" max="100" value="1">
+                </div>
+                <div class="form-group">
+                    <label>
+                        <input type="checkbox" id="meetingPublic">
+                        Reunião Pública
+                    </label>
+                </div>
+                <button type="submit" class="btn btn-primary btn-full">Criar Reunião</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/app.js"></script>
+</body>
+</html> 

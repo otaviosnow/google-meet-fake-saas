@@ -1,0 +1,809 @@
+/* Reset e Base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Google Sans', 'Roboto', Arial, sans-serif;
+    background-color: #ffffff;
+    color: #202124;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* Telas */
+.screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    background-color: #ffffff;
+}
+
+/* Logo do Meet */
+.meet-logo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 24px;
+    font-weight: 500;
+    color: #202124;
+    margin-bottom: 32px;
+}
+
+.meet-logo img {
+    border-radius: 4px;
+}
+
+/* Tela 1: Nome do Participante */
+#nameScreen {
+    justify-content: center;
+    align-items: center;
+    padding: 24px;
+}
+
+.name-form {
+    text-align: center;
+    max-width: 400px;
+    width: 100%;
+}
+
+.name-form h1 {
+    font-size: 24px;
+    font-weight: 400;
+    margin-bottom: 8px;
+    color: #202124;
+}
+
+.name-form p {
+    font-size: 14px;
+    color: #5f6368;
+    margin-bottom: 32px;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.input-group input {
+    padding: 16px;
+    border: 1px solid #dadce0;
+    border-radius: 8px;
+    background-color: #ffffff;
+    color: #202124;
+    font-size: 16px;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.input-group input:focus {
+    border-color: #1a73e8;
+}
+
+.input-group button {
+    padding: 12px 24px;
+    background-color: #1a73e8;
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.input-group button:hover:not(:disabled) {
+    background-color: #1557b0;
+}
+
+.input-group button:disabled {
+    background-color: #dadce0;
+    cursor: not-allowed;
+    color: #5f6368;
+}
+
+/* Tela 2: Configuração de Dispositivos */
+#deviceScreen {
+    display: flex;
+    flex-direction: column;
+}
+
+.meet-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 24px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.9) 0%, transparent 100%);
+}
+
+.meeting-info {
+    font-size: 14px;
+    color: #202124;
+    opacity: 0.9;
+}
+
+.device-setup {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    gap: 32px;
+}
+
+.preview-container {
+    width: 100%;
+    max-width: 400px;
+    height: 300px;
+    background-color: #f8f9fa;
+    border-radius: 12px;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #e8eaed;
+}
+
+#previewVideo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+    display: none;
+}
+
+.preview-placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 32px;
+    color: #5f6368;
+}
+
+.camera-icon {
+    margin-bottom: 16px;
+    opacity: 0.7;
+}
+
+.preview-placeholder p {
+    font-size: 14px;
+}
+
+.device-controls {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 32px;
+}
+
+.device-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    background: #f8f9fa;
+    border: 1px solid #dadce0;
+    border-radius: 12px;
+    padding: 16px 24px;
+    color: #202124;
+    cursor: pointer;
+    transition: all 0.2s;
+    min-width: 120px;
+}
+
+.device-btn:hover {
+    background: #f1f3f4;
+    transform: translateY(-2px);
+}
+
+.device-btn.active {
+    background: #e8f5e8;
+    border-color: #34a853;
+    color: #34a853;
+}
+
+.device-btn.disabled {
+    background: #fce8e6;
+    border-color: #ea4335;
+    color: #ea4335;
+    opacity: 0.7;
+}
+
+.device-btn svg {
+    width: 24px;
+    height: 24px;
+}
+
+.device-btn span {
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.join-section {
+    display: flex;
+    justify-content: center;
+}
+
+.join-btn {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: #1a73e8;
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    padding: 16px 32px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    min-width: 200px;
+    justify-content: center;
+}
+
+.join-btn:hover:not(:disabled) {
+    background: #1557b0;
+    transform: translateY(-2px);
+}
+
+.join-btn:disabled {
+    background: #dadce0;
+    cursor: not-allowed;
+    opacity: 0.6;
+    color: #5f6368;
+}
+
+.join-btn svg {
+    width: 24px;
+    height: 24px;
+}
+
+/* Tela 3: Chamada Ativa */
+#callScreen {
+    display: flex;
+    flex-direction: column;
+}
+
+.call-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 24px;
+    background: linear-gradient(180deg, rgba(0,0,0,0.4) 0%, transparent 100%);
+    z-index: 100;
+}
+
+.meeting-info {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    font-size: 14px;
+    color: #ffffff;
+}
+
+.meeting-time {
+    opacity: 0.9;
+}
+
+.header-controls {
+    display: flex;
+    gap: 8px;
+}
+
+.header-btn {
+    background: none;
+    border: none;
+    color: #ffffff;
+    padding: 8px;
+    border-radius: 50%;
+    cursor: pointer;
+    opacity: 0.9;
+    transition: all 0.2s;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.header-btn:hover {
+    opacity: 1;
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.main-video-area {
+    flex: 1;
+    position: relative;
+    background-color: #000000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#vslVideo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* Ocultar controles do vídeo */
+    &::-webkit-media-controls {
+        display: none !important;
+    }
+    &::-webkit-media-controls-panel {
+        display: none !important;
+    }
+    &::-webkit-media-controls-play-button {
+        display: none !important;
+    }
+    &::-webkit-media-controls-start-playback-button {
+        display: none !important;
+    }
+    &::-webkit-media-controls-timeline {
+        display: none !important;
+    }
+    &::-webkit-media-controls-current-time-display {
+        display: none !important;
+    }
+    &::-webkit-media-controls-time-remaining-display {
+        display: none !important;
+    }
+    &::-webkit-media-controls-mute-button {
+        display: none !important;
+    }
+    &::-webkit-media-controls-volume-slider {
+        display: none !important;
+    }
+    &::-webkit-media-controls-fullscreen-button {
+        display: none !important;
+    }
+    &::-webkit-media-controls-rewind-button {
+        display: none !important;
+    }
+    &::-webkit-media-controls-return-to-realtime-button {
+        display: none !important;
+    }
+    &::-webkit-media-controls-seek-back-button {
+        display: none !important;
+    }
+    &::-webkit-media-controls-seek-forward-button {
+        display: none !important;
+    }
+    &::-webkit-media-controls-picture-in-picture-button {
+        display: none !important;
+    }
+    &::-webkit-media-controls-overlay-play-button {
+        display: none !important;
+    }
+    &::-webkit-media-controls-overlay-enclosure {
+        display: none !important;
+    }
+    &::-moz-media-controls {
+        display: none !important;
+    }
+    &::-ms-media-controls {
+        display: none !important;
+    }
+}
+
+.user-video {
+    position: absolute;
+    bottom: 120px;
+    right: 24px;
+    width: 150px;
+    height: 100px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 2px solid #dadce0;
+}
+
+#webcamVideo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: none;
+}
+
+.user-video-placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    color: #5f6368;
+    opacity: 0.7;
+}
+
+.call-controls {
+    position: absolute;
+    bottom: 24px;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    z-index: 100;
+}
+
+.control-buttons {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 16px 24px;
+    border-radius: 40px;
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.control-btn {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+    background-color: rgba(0, 0, 0, 0.1);
+    color: #202124;
+}
+
+.control-btn:hover {
+    background-color: rgba(0, 0, 0, 0.2);
+    transform: scale(1.05);
+}
+
+.control-btn.muted {
+    background-color: #ea4335;
+    color: #ffffff;
+}
+
+.control-btn.disabled {
+    background-color: #ea4335;
+    color: #ffffff;
+}
+
+.control-btn.end-call {
+    background-color: #ea4335;
+    color: #ffffff;
+    position: relative;
+}
+
+.control-btn.end-call::before {
+    content: '';
+    position: absolute;
+    left: -12px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 1px;
+    height: 24px;
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+.control-btn.end-call:hover {
+    background-color: #d93025;
+}
+
+/* Chat Popup */
+.chat-popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    width: 400px;
+    max-width: 90vw;
+    height: 500px;
+    max-height: 80vh;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+    opacity: 0;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.chat-popup.active {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+}
+
+.chat-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 20px;
+    border-bottom: 1px solid #e0e0e0;
+    background: #f8f9fa;
+}
+
+.chat-header h3 {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 500;
+    color: #333;
+}
+
+.chat-close {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+    border-radius: 4px;
+    color: #666;
+    transition: background-color 0.2s;
+}
+
+.chat-close:hover {
+    background-color: #e0e0e0;
+}
+
+.chat-messages {
+    flex: 1;
+    padding: 16px 20px;
+    overflow-y: auto;
+    background: #ffffff;
+}
+
+.chat-input-container {
+    display: flex;
+    align-items: center;
+    padding: 16px 20px;
+    border-top: 1px solid #e0e0e0;
+    background: #ffffff;
+    gap: 12px;
+}
+
+.chat-input {
+    flex: 1;
+    border: 1px solid #dadce0;
+    border-radius: 20px;
+    padding: 8px 16px;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.chat-input:focus {
+    border-color: #1a73e8;
+}
+
+.chat-send {
+    background: #1a73e8;
+    border: none;
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: #ffffff;
+    transition: background-color 0.2s;
+}
+
+.chat-send:hover {
+    background: #1557b0;
+}
+
+.chat-send:disabled {
+    background: #dadce0;
+    cursor: not-allowed;
+}
+
+.message {
+    margin-bottom: 12px;
+    padding: 8px 12px;
+    background: #f1f3f4;
+    border-radius: 8px;
+    font-size: 14px;
+    color: #333;
+    word-wrap: break-word;
+}
+
+.message.own {
+    background: #e3f2fd;
+    margin-left: 20px;
+}
+
+/* Tela 4: Chamada Encerrada */
+#endedScreen {
+    justify-content: center;
+    align-items: center;
+    background-color: #ffffff;
+}
+
+.ended-content {
+    text-align: center;
+    max-width: 400px;
+    width: 100%;
+    padding: 24px;
+}
+
+.ended-icon {
+    margin-bottom: 24px;
+    color: #34a853;
+}
+
+.ended-content h1 {
+    font-size: 28px;
+    font-weight: 400;
+    margin-bottom: 16px;
+    color: #202124;
+}
+
+.ended-content p {
+    font-size: 16px;
+    color: #5f6368;
+    margin-bottom: 32px;
+    line-height: 1.5;
+}
+
+.btn {
+    padding: 12px 24px;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.btn-primary {
+    background-color: #1a73e8;
+    color: #ffffff;
+}
+
+.btn-primary:hover {
+    background-color: #1557b0;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .device-controls {
+        flex-direction: column;
+        gap: 12px;
+    }
+    
+    .device-btn {
+        min-width: 200px;
+    }
+    
+    .join-btn {
+        min-width: 250px;
+    }
+    
+    .preview-container {
+        height: 250px;
+    }
+    
+    .user-video {
+        width: 120px;
+        height: 80px;
+        bottom: 100px;
+        right: 16px;
+    }
+    
+    .control-buttons {
+        gap: 12px;
+        padding: 12px 20px;
+    }
+    
+    .control-btn {
+        width: 48px;
+        height: 48px;
+    }
+    
+    .meet-header {
+        padding: 12px 16px;
+    }
+    
+    .call-header {
+        padding: 12px 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .name-form {
+        padding: 0 16px;
+    }
+    
+    .device-setup {
+        padding: 16px;
+        gap: 24px;
+    }
+    
+    .preview-container {
+        height: 200px;
+    }
+    
+    .device-btn {
+        min-width: 150px;
+        padding: 12px 16px;
+    }
+    
+    .join-btn {
+        min-width: 200px;
+        padding: 12px 24px;
+    }
+    
+    .user-video {
+        width: 100px;
+        height: 60px;
+        bottom: 80px;
+        right: 12px;
+    }
+    
+    .control-buttons {
+        gap: 8px;
+        padding: 10px 16px;
+    }
+    
+    .control-btn {
+        width: 44px;
+        height: 44px;
+    }
+    
+    .chat-popup {
+        width: 95vw;
+        height: 70vh;
+        max-height: 70vh;
+    }
+    
+    .chat-header {
+        padding: 12px 16px;
+    }
+    
+    .chat-messages {
+        padding: 12px 16px;
+    }
+    
+    .chat-input-container {
+        padding: 12px 16px;
+    }
+    
+    .chat-input {
+        font-size: 16px;
+    }
+    
+    .ended-content {
+        padding: 16px;
+    }
+    
+    .ended-content h1 {
+        font-size: 24px;
+    }
+    
+    .ended-content p {
+        font-size: 14px;
+    }
+}
+
+/* Estilos específicos para iOS */
+@supports (-webkit-touch-callout: none) {
+    .device-btn,
+    .join-btn,
+    .control-btn {
+        -webkit-tap-highlight-color: transparent;
+    }
+    
+    #vslVideo {
+        -webkit-playsinline: true;
+        -webkit-presentation-mode: inline;
+    }
+} 

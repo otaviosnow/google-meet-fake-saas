@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Meet - Reunião</title>
+    <link rel="stylesheet" href="css/meet.css">
+</head>
+<body>
+    <!-- Tela 1: Nome do Participante -->
+    <div class="screen" id="nameScreen">
+        <div class="meet-logo">
+            <img src="images/meet-logo.png" alt="Google Meet" width="205" height="101">
+        </div>
+        
+        <div class="name-form">
+            <h1>Antes de entrar na reunião</h1>
+            <p>Digite seu nome para continuar</p>
+            
+            <div class="input-group">
+                <input type="text" id="participantName" placeholder="Digite seu nome" maxlength="50">
+                <button id="continueBtn" disabled>Continuar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tela 2: Configuração de Dispositivos -->
+    <div class="screen" id="deviceScreen" style="display: none;">
+        <div class="meet-header">
+            <div class="meet-logo">
+                <img src="images/meet-logo.png" alt="Google Meet" width="51" height="25">
+            </div>
+            <div class="meeting-info">
+                <span id="meetingId">abc-def-ghi</span>
+            </div>
+        </div>
+
+        <div class="device-setup">
+            <div class="preview-container">
+                <video id="previewVideo" autoplay muted playsinline></video>
+                <div class="preview-placeholder" id="previewPlaceholder">
+                    <div class="camera-icon">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 12m-3.2 0a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0"/>
+                            <path d="M9 2L7.17 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2h-3.17L15 2H9zm3 15c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5z"/>
+                        </svg>
+                    </div>
+                    <p>Clique em "Câmera" para ativar</p>
+                </div>
+            </div>
+
+            <div class="device-controls">
+                <button class="device-btn" id="cameraBtn">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 12m-3.2 0a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0"/>
+                        <path d="M9 2L7.17 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2h-3.17L15 2H9zm3 15c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5z"/>
+                    </svg>
+                    <span>Câmera</span>
+                </button>
+
+                <button class="device-btn" id="microphoneBtn">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3z"/>
+                        <path d="M17 11c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-3.08c3.39-.49 6-3.39 6-6.92h-2z"/>
+                    </svg>
+                    <span>Microfone</span>
+                </button>
+            </div>
+
+            <div class="join-section">
+                <button class="join-btn" id="joinBtn" disabled>
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                    </svg>
+                    Entrar agora
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tela 3: Chamada Ativa -->
+    <div class="screen" id="callScreen" style="display: none;">
+        <!-- Área Principal do Vídeo -->
+        <div class="main-video-area">
+            <video id="vslVideo" autoplay playsinline>
+                <!-- Source será definido dinamicamente -->
+            </video>
+            
+            <!-- Webcam do Usuário -->
+            <div class="user-video" id="userVideo">
+                <video id="webcamVideo" autoplay muted playsinline></video>
+                <div class="user-video-placeholder" id="userVideoPlaceholder">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 12m-3.2 0a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0"/>
+                        <path d="M9 2L7.17 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2h-3.17L15 2H9zm3 15c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5z"/>
+                    </svg>
+                </div>
+            </div>
+        </div>
+
+        <!-- Controles da Chamada -->
+        <div class="call-controls">
+            <div class="control-buttons">
+                <button class="control-btn" id="muteBtn">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3z"/>
+                        <path d="M17 11c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-3.08c3.39-.49 6-3.39 6-6.92h-2z"/>
+                    </svg>
+                </button>
+
+                <button class="control-btn" id="videoBtn">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 12m-3.2 0a3.2 3.2 0 1 1 6.4 0a3.2 3.2 0 1 1 -6.4 0"/>
+                        <path d="M9 2L7.17 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2h-3.17L15 2H9zm3 15c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5z"/>
+                    </svg>
+                </button>
+
+                <button class="control-btn" id="chatBtn">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-2 12H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z"/>
+                    </svg>
+                </button>
+
+                <button class="control-btn end-call" id="endCallBtn">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 9c-1.6 0-3.15.25-4.6.72v3.1c0 .39-.23.74-.56.9-.98.49-1.87 1.12-2.66 1.85-.18.18-.43.28-.7.28-.28 0-.53-.11-.71-.29L.29 13.08c-.18-.17-.29-.42-.29-.7 0-.28.11-.53.29-.71C3.34 8.78 7.46 7 12 7s8.66 1.78 11.71 4.67c.18.18.29.43.29.71 0 .28-.11.53-.29.71l-2.48 2.48c-.18.18-.43.29-.71.29-.27 0-.52-.11-.7-.28-.79-.74-1.69-1.36-2.67-1.85-.33-.16-.56-.5-.56-.9v-3.1C15.15 9.25 13.6 9 12 9z"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Chat Popup -->
+        <div class="chat-popup" id="chatPopup">
+            <div class="chat-header">
+                <h3>In-call messages</h3>
+                <button class="chat-close" id="chatCloseBtn">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+                    </svg>
+                </button>
+            </div>
+            
+            <div class="chat-messages" id="chatMessages">
+                <!-- Mensagens aparecerão aqui -->
+            </div>
+            
+            <div class="chat-input-container">
+                <input type="text" class="chat-input" id="chatInput" placeholder="Send a message">
+                <button class="chat-send" id="chatSendBtn">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tela 4: Chamada Encerrada -->
+    <div class="screen" id="endedScreen" style="display: none;">
+        <div class="ended-content">
+            <div class="ended-icon">
+                <svg width="64" height="64" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                </svg>
+            </div>
+            <h1>Chamada encerrada</h1>
+            <p>Obrigado por participar da reunião</p>
+            <a href="/" class="btn btn-primary">Voltar ao Início</a>
+        </div>
+    </div>
+
+    <script src="js/meet.js"></script>
+</body>
+</html> 

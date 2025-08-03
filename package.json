@@ -1,0 +1,48 @@
+{
+  "name": "google-meet-fake-saas",
+  "version": "1.0.0",
+  "description": "SaaS para criar chamadas fake do Google Meet",
+  "main": "server-render.js",
+  "scripts": {
+    "start": "node server-render.js",
+    "dev": "nodemon server-render.js",
+    "prod": "pm2 start ecosystem.config.js --env production",
+    "stop": "pm2 stop google-meet-fake-saas",
+    "restart": "pm2 restart google-meet-fake-saas",
+    "logs": "pm2 logs google-meet-fake-saas",
+    "monitor": "pm2 monit",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "install-deps": "npm install",
+    "setup": "bash install.sh"
+  },
+  "keywords": ["google-meet", "fake", "saas", "video-call", "nodejs", "express", "mongodb"],
+  "author": "Seu Nome",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2",
+    "mongoose": "^7.5.0",
+    "bcryptjs": "^2.4.3",
+    "jsonwebtoken": "^9.0.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "multer": "^1.4.5-lts.1",
+    "express-rate-limit": "^6.10.0",
+    "helmet": "^7.0.0",
+    "express-validator": "^7.0.1",
+    "uuid": "^9.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/seu-usuario/google-meet-fake-saas.git"
+  },
+  "bugs": {
+    "url": "https://github.com/seu-usuario/google-meet-fake-saas/issues"
+  },
+  "homepage": "https://github.com/seu-usuario/google-meet-fake-saas#readme"
+} 
